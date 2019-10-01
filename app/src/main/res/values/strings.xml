@@ -1,0 +1,10 @@
+<resources>
+
+    <string name="app_name">IMDB</string>
+
+    <string name="main_menu_movies">Movies</string>
+    <string name="main_menu_news">News</string>
+
+    <string name="toolbar_menu_search">Search</string>
+
+</resources>

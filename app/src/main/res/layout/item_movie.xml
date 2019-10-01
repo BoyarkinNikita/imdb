@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="ItemMovieBinding">
+
+        <variable
+            name="viewModel"
+            type="com.example.imdb.ui.main.movies.MoviesViewModel" />
+
+        <variable
+            name="item"
+            type="com.example.imdb.ui.main.movies.MovieItem" />
+
+    </data>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="@{item.title}" />
+
+</layout>
