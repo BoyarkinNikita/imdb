@@ -1,5 +1,6 @@
-package com.example.imdb.ui.main.movies
+package com.example.imdb.ui.main.movies.helper
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -8,12 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.imdb.R
 import com.example.imdb.databinding.ItemMovieBinding
 import com.example.imdb.databinding.ItemProgressBinding
+import com.example.imdb.di.GlideApp
+import com.example.imdb.di.get
+import com.example.imdb.ui.main.movies.MoviesViewModel
+import com.example.imdb.utils.helper.diff.DefaultDiffAdapter
+import com.example.imdb.utils.helper.diff.DiffItem
 
 class MoviesAdapter(
     private val viewModel: MoviesViewModel
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var items = mutableListOf<Any>()
-
+) : DefaultDiffAdapter<DiffItem>() {
     override fun getItemViewType(position: Int): Int = when (items[position]) {
         is MovieItem -> R.layout.item_movie
         is ProgressItem -> R.layout.item_progress
@@ -31,8 +35,12 @@ class MoviesAdapter(
         )
 
         return when (viewType) {
-            R.layout.item_movie -> ItemMoviesViewHolder(binding as ItemMovieBinding)
-            R.layout.item_progress -> ItemProgressViewHolder(binding as ItemProgressBinding)
+            R.layout.item_movie -> ItemMoviesViewHolder(
+                binding as ItemMovieBinding
+            )
+            R.layout.item_progress -> ItemProgressViewHolder(
+                binding as ItemProgressBinding
+            )
             else -> throw IllegalStateException()
         }
     }
@@ -51,15 +59,8 @@ class MoviesAdapter(
         }
     }
 
-    override fun getItemCount() = items.size
-
-    fun updateAll(data: Iterable<Any>) {
-        items.apply {
-            clear()
-            addAll(data)
-        }
-
-        notifyDataSetChanged()
+    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
+        if (holder is ItemMoviesViewHolder) holder.cleanup()
     }
 
     fun updateLoading(isLoading: Boolean) {
@@ -86,6 +87,11 @@ class MoviesAdapter(
                 it.item = item
                 it.executePendingBindings()
             }
+        }
+
+        fun cleanup() {
+            GlideApp.with(get<Context>())
+                .clear(binding.itemMoviePoster)
         }
     }
 

@@ -5,6 +5,7 @@ import com.example.imdb.api.NewsApi
 import com.example.imdb.api.NewsClient
 import com.example.imdb.api.OmdbApi
 import com.example.imdb.api.OmdbClient
+import com.example.imdb.config.CacheConfig
 import com.example.imdb.config.NetworkConfig
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -19,7 +20,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-
 private const val NETWORK_MODULE = "network."
 
 val OMDB_OK_HTTP_QUALIFIER = named("${NETWORK_MODULE}omdb_ok_http")
@@ -32,7 +32,7 @@ val networkModule = module {
     single { NetworkConfig() }
 
     single {
-        Cache(androidContext().cacheDir, get<NetworkConfig>().networkCacheSizeBytes)
+        Cache(androidContext().cacheDir, get<CacheConfig>().networkCacheSizeBytes)
     }
 
     single<Gson> {

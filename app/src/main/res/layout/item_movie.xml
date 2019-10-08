@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data class="ItemMovieBinding">
+
+        <import type="android.view.View" />
+
+        <import type="com.example.imdb.ui.main.movies.helper.MovieType" />
 
         <variable
             name="viewModel"
@@ -10,14 +17,110 @@
 
         <variable
             name="item"
-            type="com.example.imdb.ui.main.movies.MovieItem" />
+            type="com.example.imdb.ui.main.movies.helper.MovieItem" />
 
     </data>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="center"
-        android:text="@{item.title}" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_general"
+        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginEnd="@dimen/margin_general"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/card_corners"
+        app:cardElevation="@dimen/card_elevation"
+        bind:click_double_check="@{(view) -> viewModel.onMovieClick(item)}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/itemMoviePoster"
+                android:layout_width="67dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                bind:image_placeholder="@{@drawable/ic_placeholder}"
+                bind:image_uri="@{item.posterUrl}"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/itemMovieTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="2"
+                android:text="@{item.title}"
+                android:textColor="@color/accent"
+                android:textSize="@dimen/text_size_title"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/itemMoviePoster"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/lorem/random" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/itemMovieDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{item.type == MovieType.SERIES ? @string/omdb_type_series : @string/omdb_type_movie}"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/text_size_secondary"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/itemMoviePoster"
+                app:layout_constraintTop_toBottomOf="@+id/itemMovieTitle"
+                app:layout_constraintVertical_bias="0"
+                tools:text="Movie" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/itemMovieYear"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@{item.year}"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/text_size_secondary"
+                android:visibility="@{item.year == null ? View.GONE : View.VISIBLE}"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/itemMoviePoster"
+                app:layout_constraintTop_toBottomOf="@+id/itemMovieDescription"
+                app:layout_constraintVertical_bias="0"
+                tools:text="@tools:sample/date/ddmmyy" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </layout>

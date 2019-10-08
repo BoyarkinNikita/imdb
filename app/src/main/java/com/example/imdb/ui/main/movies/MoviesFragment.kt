@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.imdb.R
+import com.example.imdb.ui.main.movies.helper.MoviesAdapter
 import com.example.imdb.utils.helper.FlowFragment
 import com.example.imdb.utils.helper.PaginationScrollListener
+import com.example.imdb.utils.string
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.snackbar.Snackbar.LENGTH_LONG
 import kotlinx.android.synthetic.main.fragment_movies.*
@@ -32,7 +35,7 @@ class MoviesFragment : FlowFragment() {
 
         viewModel.apply {
             movies.observe(this@MoviesFragment, Observer {
-                moviesAdapter.updateAll(it)
+                moviesAdapter.updateCustom(it)
             })
 
             isLoading.observe(this@MoviesFragment, Observer {
@@ -40,20 +43,28 @@ class MoviesFragment : FlowFragment() {
             })
 
             error.observe(this@MoviesFragment, Observer {
-                Snackbar.make(moviesRecycler, it.message ?: "Unknown error.", LENGTH_LONG).show()
+                val message = it.message ?: string(R.string.error_message_unknown)
+                Snackbar.make(moviesRecycler, message, LENGTH_LONG).show()
+            })
+
+            clicked.observe(this@MoviesFragment, Observer {
+                val item = it ?: return@Observer
+
+                val argument = bundleOf("imdbId" to item.imdbId)
+                navigation(R.id.applicationContainer)
+                    .navigate(R.id.destinationFragmentMovieDetails, argument)
+
+                clicked.value = null
             })
         }
 
         moviesAdapter = MoviesAdapter(viewModel)
+
         val linearLayoutManager = LinearLayoutManager(context)
 
         moviesRecycler.apply {
             layoutManager = linearLayoutManager
-            itemAnimator = null
-            isNestedScrollingEnabled = true
-
             setHasFixedSize(true)
-
             adapter = moviesAdapter
         }
 
@@ -71,6 +82,11 @@ class MoviesFragment : FlowFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity as? AppCompatActivity?)?.supportActionBar?.setTitle(R.string.main_menu_movies)
+    }
+
+    override fun onDestroyView() {
+        moviesRecycler.adapter = null
+        super.onDestroyView()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

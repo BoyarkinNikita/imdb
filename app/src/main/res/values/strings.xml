@@ -2,9 +2,14 @@
 
     <string name="app_name">IMDB</string>
 
+    <string name="error_message_unknown">Unknown error.</string>
+
     <string name="main_menu_movies">Movies</string>
     <string name="main_menu_news">News</string>
 
     <string name="toolbar_menu_search">Search</string>
+
+    <string name="omdb_type_movie">Movie</string>
+    <string name="omdb_type_series">Series</string>
 
 </resources>

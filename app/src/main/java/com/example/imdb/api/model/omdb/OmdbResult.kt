@@ -1,4 +1,4 @@
-package com.example.imdb.api.model
+package com.example.imdb.api.model.omdb
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

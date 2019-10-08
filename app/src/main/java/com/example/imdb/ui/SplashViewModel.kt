@@ -2,11 +2,15 @@ package com.example.imdb.ui
 
 import android.content.SharedPreferences
 import android.content.res.Resources
+import com.example.imdb.api.NewsApi
 import com.example.imdb.api.NewsClient
+import com.example.imdb.api.OmdbApi
 import com.example.imdb.api.OmdbClient
 import com.example.imdb.di.GlideApp
 import com.example.imdb.di.get
+import com.example.imdb.storage.OmdbRepository
 import com.example.imdb.utils.helper.ScopeViewModel
+import com.example.imdb.utils.helper.TimedCache
 import com.example.imdb.utils.helper.TriggerField
 import com.example.imdb.utils.helper.trigger
 import kotlinx.coroutines.Dispatchers.IO
@@ -35,8 +39,15 @@ class SplashViewModel : ScopeViewModel() {
     private fun initializeDi() {
         get<Resources>()
         get<SharedPreferences>()
+
+        get<OmdbApi>()
         get<OmdbClient>()
+
+        get<NewsApi>()
         get<NewsClient>()
+
+        get<TimedCache>()
+        get<OmdbRepository>()
     }
 
     private fun initializeGlide() {

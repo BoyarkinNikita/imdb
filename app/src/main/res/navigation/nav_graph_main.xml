@@ -7,13 +7,14 @@
     app:startDestination="@id/destinationFragmentMovies">
 
     <fragment
+        android:id="@+id/destinationFragmentMovies"
+        android:name="com.example.imdb.ui.main.movies.MoviesFragment"
+        tools:layout="@layout/fragment_movies" />
+
+    <fragment
         android:id="@+id/destinationFragmentNews"
         android:name="com.example.imdb.ui.main.NewsFragment"
         tools:layout="@layout/fragment_news" />
 
-    <fragment
-        android:id="@+id/destinationFragmentMovies"
-        android:name="com.example.imdb.ui.main.movies.MoviesFragment"
-        tools:layout="@layout/fragment_movies" />
 
 </navigation>

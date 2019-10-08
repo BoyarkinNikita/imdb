@@ -1,8 +1,6 @@
 package com.example.imdb.config
 
 class NetworkConfig {
-    val networkCacheSizeBytes = 10L * 1_024 * 1_024 // 10 Mb
-
     val maxRequests = 72
     val maxRequestPerHost = 8
     val connectTimeoutSeconds = 20L

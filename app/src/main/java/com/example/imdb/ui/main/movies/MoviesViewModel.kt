@@ -1,17 +1,21 @@
 package com.example.imdb.ui.main.movies
 
-import com.example.imdb.api.OmdbClient
 import com.example.imdb.di.get
+import com.example.imdb.storage.OmdbRepository
+import com.example.imdb.ui.main.movies.helper.MovieItem
 import com.example.imdb.utils.helper.Field
 import com.example.imdb.utils.helper.ScopeViewModel
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class MoviesViewModel : ScopeViewModel() {
     val movies = Field<List<MovieItem>>(listOf())
     val error = Field<Throwable>()
     var isLoading = Field<Boolean>(false)
+
+    val clicked = Field<MovieItem?>(null)
 
     var lastQuery = "Movie"
     var offset: Int = 0
@@ -41,8 +45,9 @@ class MoviesViewModel : ScopeViewModel() {
             isLoading.value = true
 
             val (items, total) = try {
-                withContext(IO) { get<OmdbClient>().search(lastQuery, page) }
+                withContext(IO) { get<OmdbRepository>().search(lastQuery, page) }
             } catch (throwable: Throwable) {
+                Timber.w(throwable)
                 isLoading.value = false
                 error.value = throwable
                 return@launch
@@ -58,5 +63,9 @@ class MoviesViewModel : ScopeViewModel() {
 
             isLoading.value = false
         }
+    }
+
+    fun onMovieClick(item: MovieItem) {
+        clicked.value = item
     }
 }
