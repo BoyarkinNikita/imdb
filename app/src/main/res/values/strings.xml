@@ -12,4 +12,9 @@
     <string name="omdb_type_movie">Movie</string>
     <string name="omdb_type_series">Series</string>
 
+    <string name="movie_details_rating">%1$s/10</string>
+    <string name="movie_details_director">&lt;b&gt;Director:&lt;/b&gt; %1$s</string>
+    <string name="movie_details_writer">&lt;b&gt;Writers:&lt;/b&gt; %1$s</string>
+    <string name="movie_details_actors">&lt;b&gt;Actors:&lt;/b&gt; %1$s</string>
+
 </resources>

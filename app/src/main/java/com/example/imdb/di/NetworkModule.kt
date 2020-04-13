@@ -18,6 +18,7 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 private const val NETWORK_MODULE = "network."
@@ -32,7 +33,8 @@ val networkModule = module {
     single { NetworkConfig() }
 
     single {
-        Cache(androidContext().cacheDir, get<CacheConfig>().networkCacheSizeBytes)
+        val directory = File(androidContext().cacheDir, "okhttp")
+        Cache(directory, get<CacheConfig>().networkCacheSizeBytes)
     }
 
     single<Gson> {

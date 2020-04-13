@@ -4,20 +4,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_application"
-    app:startDestination="@id/destinationFragmentMain">
+    app:startDestination="@id/destinationSplash"
+    tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/destinationFragmentMain"
+        android:id="@+id/destinationSplash"
+        android:name="com.example.imdb.ui.splash.SplashFragment"
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/actionSplashToMain"
+            app:destination="@id/destinationMain"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
+            app:popUpTo="@+id/nav_graph_application" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/destinationMain"
         android:name="com.example.imdb.ui.main.MainFragment"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+
+        <action
+            android:id="@+id/actionMainToPreview"
+            app:destination="@id/destinationPreview"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+
+    </fragment>
 
     <fragment
-        android:id="@+id/destinationFragmentMovieDetails"
-        android:name="com.example.imdb.ui.main.movies.MovieDetailsFragment"
-        tools:layout="@layout/fragment_movie_details">
+        android:id="@+id/destinationPreview"
+        android:name="com.example.imdb.ui.preview.PreviewFragment"
+        tools:layout="@layout/fragment_preview">
 
         <argument
-            android:name="imdbId"
+            android:name="imageUri"
             app:argType="string"
             app:nullable="false" />
 

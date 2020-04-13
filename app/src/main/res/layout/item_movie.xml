@@ -5,22 +5,6 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data class="ItemMovieBinding">
-
-        <import type="android.view.View" />
-
-        <import type="com.example.imdb.ui.main.movies.helper.MovieType" />
-
-        <variable
-            name="viewModel"
-            type="com.example.imdb.ui.main.movies.MoviesViewModel" />
-
-        <variable
-            name="item"
-            type="com.example.imdb.ui.main.movies.helper.MovieItem" />
-
-    </data>
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,10 +14,10 @@
         android:layout_marginBottom="@dimen/margin_small"
         android:clickable="true"
         android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
         app:cardCornerRadius="@dimen/card_corners"
         app:cardElevation="@dimen/card_elevation"
-        bind:click_double_check="@{(view) -> viewModel.onMovieClick(item)}">
+        bind:click_double_check="@{(view) -> data.onMovieClick(item)}"
+        bind:selectable_ripple="@{true}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -46,11 +30,12 @@
                 android:layout_marginStart="@dimen/margin_small"
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_marginBottom="@dimen/margin_small"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                bind:image_placeholder="@{@drawable/ic_placeholder}"
+                bind:image_error="@{@drawable/ic_error_placeholder}"
+                bind:image_placeholder="@{@drawable/ic_default_placeholder}"
                 bind:image_uri="@{item.posterUrl}"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
@@ -67,7 +52,6 @@
                 android:text="@{item.title}"
                 android:textColor="@color/accent"
                 android:textSize="@dimen/text_size_title"
-                app:layout_constrainedHeight="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/itemMoviePoster"
                 app:layout_constraintTop_toTopOf="parent"
@@ -88,7 +72,6 @@
                 android:text="@{item.type == MovieType.SERIES ? @string/omdb_type_series : @string/omdb_type_movie}"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/text_size_secondary"
-                app:layout_constrainedHeight="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/itemMoviePoster"
@@ -110,17 +93,30 @@
                 android:text="@{item.year}"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/text_size_secondary"
-                android:visibility="@{item.year == null ? View.GONE : View.VISIBLE}"
-                app:layout_constrainedHeight="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/itemMoviePoster"
                 app:layout_constraintTop_toBottomOf="@+id/itemMovieDescription"
                 app:layout_constraintVertical_bias="0"
+                bind:gone_if_null_or_blank="@{item.year}"
                 tools:text="@tools:sample/date/ddmmyy" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <data>
+
+        <import type="com.example.imdb.ui.movies.helper.MovieType" />
+
+        <variable
+            name="data"
+            type="com.example.imdb.ui.movies.MoviesViewModel" />
+
+        <variable
+            name="item"
+            type="com.example.imdb.ui.movies.helper.MovieItem" />
+
+    </data>
 
 </layout>

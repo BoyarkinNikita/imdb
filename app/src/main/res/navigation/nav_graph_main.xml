@@ -4,17 +4,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/destinationFragmentMovies">
+    app:startDestination="@id/destinationBottom"
+    tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/destinationFragmentMovies"
-        android:name="com.example.imdb.ui.main.movies.MoviesFragment"
-        tools:layout="@layout/fragment_movies" />
+        android:id="@+id/destinationBottom"
+        android:name="com.example.imdb.ui.bottom.BottomFragment"
+        tools:layout="@layout/fragment_bottom">
+
+        <action
+            android:id="@+id/actionBottomToMovieDetails"
+            app:destination="@id/destinationMovieDetails"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+
+    </fragment>
 
     <fragment
-        android:id="@+id/destinationFragmentNews"
-        android:name="com.example.imdb.ui.main.NewsFragment"
-        tools:layout="@layout/fragment_news" />
+        android:id="@+id/destinationMovieDetails"
+        android:name="com.example.imdb.ui.movies.MovieDetailsFragment"
+        tools:layout="@layout/fragment_movie_details">
 
+        <argument
+            android:name="imdbId"
+            app:argType="string"
+            app:nullable="false" />
+
+    </fragment>
 
 </navigation>

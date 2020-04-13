@@ -2,18 +2,19 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         applicationId "com.example.imdb"
 
         minSdkVersion 23
-        targetSdkVersion 28
+        targetSdkVersion 29
 
-        versionCode 2
-        versionName "0.0.2"
+        versionCode 3
+        versionName "0.0.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -21,6 +22,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -74,13 +79,13 @@ dependencies {
     // Common
 
     implementation "androidx.multidex:multidex:$multidex_version"
-    implementation "androidx.core:core-ktx:$appcompat_version"
+    implementation "androidx.core:core-ktx:$ui_core_version"
     implementation "android.arch.lifecycle:common-java8:$lificycle_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lificycle_version"
 
     // UI
 
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.appcompat:appcompat:$ui_appcompat_version"
     implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
     implementation "com.google.android.material:material:$material_version"
 
@@ -119,7 +124,10 @@ dependencies {
 
     // Apache
 
+    // Apache
+
     implementation "org.apache.commons:commons-lang3:$apache_commons_version"
+    implementation "commons-io:commons-io:$apache_commons_io_version"
 
     // Cache
 
@@ -129,6 +137,10 @@ dependencies {
 
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+
+    // Photo preview
+
+    implementation "com.github.chrisbanes:PhotoView:$photo_preview_version"
 
     // Test
 

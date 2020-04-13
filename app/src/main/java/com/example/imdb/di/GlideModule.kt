@@ -12,6 +12,7 @@ import com.example.imdb.config.ContextConfig
 class GlideModule : AppGlideModule() {
     override fun applyOptions(context: Context, builder: GlideBuilder) {
         val cacheSize = get<CacheConfig>().imageCacheSizeBytes
-        builder.setDiskCache(InternalCacheDiskCacheFactory(context, cacheSize))
+        val factory = InternalCacheDiskCacheFactory(context, "glide", cacheSize)
+        builder.setDiskCache(factory)
     }
 }

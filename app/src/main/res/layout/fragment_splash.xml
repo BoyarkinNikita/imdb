@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_splash_screen" />
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.imdb.ui.splash.SplashViewModel" />
+
+        <variable
+            name="sharedData"
+            type="com.example.imdb.ui.base.ApplicationViewModel" />
+
+    </data>
+
+</layout>

@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/moviesRecycler"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:paddingTop="@dimen/margin_small"
-    android:paddingBottom="@dimen/margin_small" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/moviesRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/margin_small"
+        android:paddingBottom="@dimen/margin_small" />
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.imdb.ui.movies.MoviesViewModel" />
+
+        <variable
+            name="sharedData"
+            type="com.example.imdb.ui.base.ApplicationViewModel" />
+
+    </data>
+
+</layout>

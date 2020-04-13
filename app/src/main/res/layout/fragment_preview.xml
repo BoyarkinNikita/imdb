@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.github.chrisbanes.photoview.PhotoView
+        android:id="@+id/previewImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerInside"
+        bind:image_error="@{@drawable/ic_error_placeholder}"
+        bind:image_placeholder="@{@drawable/ic_default_placeholder}"
+        bind:image_uri="@{data.imageUri}"
+        tools:src="@tools:sample/avatars" />
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.imdb.ui.preview.PreviewViewModel" />
+
+        <variable
+            name="sharedData"
+            type="com.example.imdb.ui.base.ApplicationViewModel" />
+
+    </data>
+
+</layout>

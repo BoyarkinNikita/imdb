@@ -34,7 +34,7 @@ data class OmdbDetailsResult(
 
     @Expose
     @SerializedName("Writer")
-    val writer: String? = null,
+    val writers: String? = null,
 
     @Expose
     @SerializedName("Actors")

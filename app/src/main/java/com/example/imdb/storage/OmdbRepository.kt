@@ -3,6 +3,7 @@ package com.example.imdb.storage
 import com.example.imdb.api.OmdbClient
 import com.example.imdb.di.get
 import com.example.imdb.utils.helper.TimedCache
+import com.example.imdb.utils.helper.TimedCache.Companion.cacheKey
 import java.util.concurrent.TimeUnit
 
 class OmdbRepository {

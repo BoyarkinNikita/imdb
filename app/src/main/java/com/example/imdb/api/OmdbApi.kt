@@ -6,8 +6,8 @@ import com.example.imdb.api.model.omdb.OmdbResult
 import com.example.imdb.api.model.omdb.OmdbSearchResult
 import com.example.imdb.config.NetworkConfig
 import com.example.imdb.di.get
-import com.example.imdb.ui.main.movies.helper.MovieDetailsItem
-import com.example.imdb.ui.main.movies.helper.MovieItem
+import com.example.imdb.ui.movies.helper.MovieDetailsItem
+import com.example.imdb.ui.movies.helper.MovieItem
 import retrofit2.http.GET
 import retrofit2.http.Query
 
