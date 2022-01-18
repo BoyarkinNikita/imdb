@@ -2,8 +2,8 @@ package com.example.imdb.ui.movies
 
 import com.example.imdb.di.get
 import com.example.imdb.storage.OmdbRepository
-import com.example.imdb.ui.movies.helper.MovieItem
 import com.example.imdb.ui.base.ScopeViewModel
+import com.example.imdb.ui.movies.helper.MovieItem
 import com.example.imdb.utils.field.EventField
 import com.example.imdb.utils.field.NonNullField
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -54,7 +54,7 @@ class MoviesViewModel : ScopeViewModel() {
         scope.launch(exceptionHandler) {
             loading.value = true
 
-            val (items, total) =  withContext(IO) {
+            val (items, total) = withContext(IO) {
                 get<OmdbRepository>().search(lastQuery, page)
             }
 

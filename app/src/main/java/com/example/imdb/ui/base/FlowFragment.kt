@@ -60,7 +60,7 @@ abstract class FlowFragment : Fragment() {
     }
 
     private class NavigationDelegate(
-        @IdRes private val hostId : Int
+        @IdRes private val hostId: Int
     ) {
         operator fun getValue(
             thisRef: FlowFragment,

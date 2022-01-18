@@ -6,12 +6,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.imdb.R
 import com.example.imdb.databinding.FragmentMoviesBinding
-import com.example.imdb.ui.base.ApplicationActivity
-import com.example.imdb.ui.movies.helper.MoviesAdapter
 import com.example.imdb.ui.base.MvvmFragment
 import com.example.imdb.ui.bottom.BottomFragmentDirections.Companion.actionBottomToMovieDetails
+import com.example.imdb.ui.movies.helper.MoviesAdapter
 import com.example.imdb.utils.extensions.string
-import com.example.imdb.utils.field.NonNullObserver
 import com.example.imdb.utils.helper.PaginationScrollListener
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.snackbar.Snackbar.LENGTH_LONG
@@ -35,20 +33,20 @@ class MoviesFragment : MvvmFragment<FragmentMoviesBinding, MoviesViewModel>(
         actionBar?.setTitle(R.string.main_menu_movies)
 
         with(data) {
-            movies.observeNonNull(viewLifecycleOwner, NonNullObserver {
+            movies.observeNonNull(viewLifecycleOwner, {
                 moviesAdapter.updateCustom(it)
             })
 
-            loading.observeNonNull(viewLifecycleOwner, NonNullObserver {
+            loading.observeNonNull(viewLifecycleOwner, {
                 moviesAdapter.updateLoading(it)
             })
 
-            eventError.observeEvent(viewLifecycleOwner, NonNullObserver {
+            eventError.observeEvent(viewLifecycleOwner, {
                 val message = it.message ?: string(R.string.error_message_unknown)
                 Snackbar.make(moviesRecycler, message, LENGTH_LONG).show()
             })
 
-            eventClicked.observeEvent(viewLifecycleOwner, NonNullObserver {
+            eventClicked.observeEvent(viewLifecycleOwner, {
                 mainNavigation?.navigate(actionBottomToMovieDetails(it.imdbId))
             })
         }

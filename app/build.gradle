@@ -5,27 +5,27 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 32
 
     defaultConfig {
         applicationId "com.example.imdb"
 
         minSdkVersion 23
-        targetSdkVersion 29
+        targetSdkVersion 32
 
-        versionCode 3
-        versionName "0.0.3"
+        versionCode 4
+        versionName "0.0.4"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 
     buildTypes {
@@ -80,8 +80,8 @@ dependencies {
 
     implementation "androidx.multidex:multidex:$multidex_version"
     implementation "androidx.core:core-ktx:$ui_core_version"
-    implementation "android.arch.lifecycle:common-java8:$lificycle_version"
-    implementation "androidx.lifecycle:lifecycle-extensions:$lificycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_ext_version"
 
     // UI
 

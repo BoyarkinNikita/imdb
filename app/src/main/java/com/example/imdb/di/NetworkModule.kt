@@ -1,6 +1,8 @@
 package com.example.imdb.di
 
-import com.example.imdb.BuildConfig.*
+import com.example.imdb.BuildConfig.DEBUG
+import com.example.imdb.BuildConfig.NEWS_URL
+import com.example.imdb.BuildConfig.OMDB_URL
 import com.example.imdb.api.NewsApi
 import com.example.imdb.api.NewsClient
 import com.example.imdb.api.OmdbApi

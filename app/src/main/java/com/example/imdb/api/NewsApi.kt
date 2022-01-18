@@ -11,6 +11,4 @@ interface NewsApi {
     ): String
 }
 
-class NewsClient {
-
-}
+class NewsClient

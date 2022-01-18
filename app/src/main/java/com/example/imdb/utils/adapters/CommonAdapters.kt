@@ -1,12 +1,13 @@
 package com.example.imdb.utils.adapters
 
-import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.RippleDrawable
-import android.os.Build
 import android.view.View
-import android.view.View.*
+import android.view.View.GONE
+import android.view.View.INVISIBLE
+import android.view.View.OnClickListener
+import android.view.View.VISIBLE
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.TextView
 import androidx.annotation.ColorInt
@@ -109,10 +110,7 @@ fun adapterSelectableRipple(
         drawable.setColor(ColorStateList.valueOf(color))
     }
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        @SuppressLint("NewApi")
-        foreground = drawable
-    } else background = drawable
+    foreground = drawable
 }
 
 @BindingAdapter("app:srcCompat")

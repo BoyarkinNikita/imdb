@@ -1,5 +1,6 @@
 package com.example.imdb.utils.field
 
+import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
 import androidx.annotation.AnyThread
@@ -17,6 +18,7 @@ class EventField<T : Any>(
     private val observers = ArrayList<Pair<NonNullObserver<in T>, NonNullObserver<in T>>>()
 
     @AnyThread
+    @SuppressLint("WrongThread")
     fun triggerEvent(value: T) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             Handler(Looper.getMainLooper()).post {

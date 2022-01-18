@@ -2,6 +2,7 @@
 *.iml
 .idea/workspace.xml
 .idea/tasks.xml
+.idea/misc.xml
 .idea/gradle.xml
 .idea/assetWizardSettings.xml
 .idea/modules.xml

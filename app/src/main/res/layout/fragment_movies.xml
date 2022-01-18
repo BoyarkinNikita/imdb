@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/moviesRecycler"
@@ -8,7 +9,8 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:paddingTop="@dimen/margin_small"
-        android:paddingBottom="@dimen/margin_small" />
+        android:paddingBottom="@dimen/margin_small"
+        tools:listitem="@layout/item_movie" />
 
     <data>
 

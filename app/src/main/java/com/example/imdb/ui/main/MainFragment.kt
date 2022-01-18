@@ -3,9 +3,8 @@ package com.example.imdb.ui.main
 import android.os.Bundle
 import com.example.imdb.R
 import com.example.imdb.databinding.FragmentMainBinding
-import com.example.imdb.ui.base.ApplicationActivity
 import com.example.imdb.ui.base.MvvmFragment
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_main.mainToolbar
 
 class MainFragment : MvvmFragment<FragmentMainBinding, MainViewModel>(
     R.layout.fragment_main,

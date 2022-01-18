@@ -1,11 +1,13 @@
 package com.example.imdb.utils.adapters
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
+import android.widget.ImageView.ScaleType.CENTER_INSIDE
+import android.widget.ImageView.ScaleType.FIT_CENTER
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.load.engine.DiskCacheStrategy.AUTOMATIC
 import com.bumptech.glide.load.engine.DiskCacheStrategy.NONE
-import android.widget.ImageView.ScaleType.*
 import com.example.imdb.di.GlideApp
 
 @BindingAdapter(
@@ -15,6 +17,7 @@ import com.example.imdb.di.GlideApp
     ],
     requireAll = false
 )
+@SuppressLint("CheckResult")
 fun adapterImageUri(
     view: ImageView,
     uri: String?,

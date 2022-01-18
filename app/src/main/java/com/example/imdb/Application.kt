@@ -3,10 +3,8 @@ package com.example.imdb
 import androidx.multidex.MultiDexApplication
 import com.example.imdb.BuildConfig.DEBUG
 import com.example.imdb.di.contextModule
-import com.example.imdb.di.get
 import com.example.imdb.di.networkModule
 import com.example.imdb.di.storageModule
-import kotlinx.coroutines.Job
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.logger.AndroidLogger
 import org.koin.core.context.startKoin

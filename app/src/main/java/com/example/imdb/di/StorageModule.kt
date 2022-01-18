@@ -1,6 +1,6 @@
 package com.example.imdb.di
 
-import com.example.imdb.BuildConfig.*
+import com.example.imdb.BuildConfig.VERSION_CODE
 import com.example.imdb.config.CacheConfig
 import com.example.imdb.storage.OmdbRepository
 import com.example.imdb.utils.helper.TimedCache

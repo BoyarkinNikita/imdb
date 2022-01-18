@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.imdb.R
 import com.example.imdb.databinding.ItemMovieBinding
 import com.example.imdb.databinding.ItemProgressBinding

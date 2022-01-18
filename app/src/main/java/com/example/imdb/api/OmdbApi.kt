@@ -1,8 +1,8 @@
 package com.example.imdb.api
 
-import com.example.imdb.api.model.omdb.OmdbSearchData
 import com.example.imdb.api.model.omdb.OmdbDetailsResult
 import com.example.imdb.api.model.omdb.OmdbResult
+import com.example.imdb.api.model.omdb.OmdbSearchData
 import com.example.imdb.api.model.omdb.OmdbSearchResult
 import com.example.imdb.config.NetworkConfig
 import com.example.imdb.di.get

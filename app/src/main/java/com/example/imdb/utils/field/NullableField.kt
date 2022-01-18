@@ -1,5 +1,6 @@
 package com.example.imdb.utils.field
 
+import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
 import androidx.annotation.AnyThread
@@ -20,6 +21,7 @@ class NullableField<T : Any?> : MutableLiveData<T?> {
     }
 
     @AnyThread
+    @SuppressLint("WrongThread")
     override fun postValue(value: T?) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             Handler(Looper.getMainLooper()).post { setValue(value) }

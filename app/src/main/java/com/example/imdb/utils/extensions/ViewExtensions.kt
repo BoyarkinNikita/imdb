@@ -7,7 +7,9 @@ import android.util.TypedValue
 import android.view.View
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.load.resource.drawable.DrawableDecoderCompat
 
 /** Section: Context Resources */
 
@@ -21,7 +23,9 @@ fun Context.color(@ColorRes resId: Int): Int = ContextCompat.getColor(this, resI
 @Dimension(unit = Dimension.PX)
 fun Context.dimen(@DimenRes resId: Int): Int = resources.getDimensionPixelSize(resId)
 
-fun Context.drawable(@DrawableRes resId: Int): Drawable = getDrawable(resId)!!
+fun Context.drawable(@DrawableRes resId: Int): Drawable =
+    DrawableDecoderCompat.getDrawable(this, resId, theme)
+        ?: ResourcesCompat.getDrawable(resources, resId, null)!!
 
 fun Context.integer(@IntegerRes resId: Int): Int = resources.getInteger(resId)
 
@@ -46,8 +50,8 @@ fun Fragment.dimen(@DimenRes resId: Int): Int = resources.getDimensionPixelSize(
 
 @Suppress("DEPRECATION")
 fun Fragment.drawable(@DrawableRes resId: Int): Drawable =
-    (activity ?: context)?.let { ContextCompat.getDrawable(it, resId) }
-        ?: resources.getDrawable(resId)!!
+    (activity ?: context)?.run { DrawableDecoderCompat.getDrawable(this, resId, theme) }
+        ?: ResourcesCompat.getDrawable(resources, resId, null)!!
 
 fun Fragment.integer(@IntegerRes resId: Int): Int = resources.getInteger(resId)
 
@@ -70,7 +74,8 @@ fun View.dimen(@DimenRes resId: Int): Int = resources.getDimensionPixelSize(resI
 
 @Suppress("DEPRECATION")
 fun View.drawable(@DrawableRes resId: Int): Drawable =
-    context?.let { ContextCompat.getDrawable(it, resId) } ?: resources.getDrawable(resId)!!
+    context?.run { DrawableDecoderCompat.getDrawable(this, resId, theme) }
+        ?: ResourcesCompat.getDrawable(resources, resId, null)!!
 
 fun View.integer(@IntegerRes resId: Int): Int = resources.getInteger(resId)
 

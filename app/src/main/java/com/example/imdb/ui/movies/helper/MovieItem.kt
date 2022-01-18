@@ -11,7 +11,7 @@ data class MovieItem(
     val year: String?,
     val posterUrl: String?
 ) : DiffItem, Serializable {
-    override fun id(): Any? = imdbId
+    override fun id(): Any = imdbId
 
     companion object {
         fun fromSubjectOrThrow(subject: OmdbSearchSubject): MovieItem = with(subject) {

@@ -9,7 +9,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.imdb.R
 import com.example.imdb.databinding.FragmentMovieDetailsBinding
 import com.example.imdb.ui.base.MvvmFragment
-import com.example.imdb.ui.main.MainFragmentDirections
 import com.example.imdb.ui.main.MainFragmentDirections.Companion.actionMainToPreview
 import com.example.imdb.utils.extensions.setOnClickWithDoubleCheck
 import com.example.imdb.utils.field.NullableObserver

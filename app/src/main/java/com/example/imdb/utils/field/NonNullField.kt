@@ -1,5 +1,6 @@
 package com.example.imdb.utils.field
 
+import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
 import androidx.annotation.AnyThread
@@ -13,6 +14,7 @@ class NonNullField<T : Any>(
     private val isTriggerNotEquals: Boolean = true
 ) : MutableLiveData<T>(value) {
     @AnyThread
+    @SuppressLint("WrongThread")
     override fun postValue(value: T) {
         if (Looper.myLooper() != Looper.getMainLooper()) {
             Handler(Looper.getMainLooper()).post { setValue(value) }

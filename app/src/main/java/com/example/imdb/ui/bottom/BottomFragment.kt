@@ -5,7 +5,6 @@ import com.example.imdb.NavGraphMainDirections.Companion.actionGlobalMovies
 import com.example.imdb.NavGraphMainDirections.Companion.actionGlobalNews
 import com.example.imdb.R
 import com.example.imdb.databinding.FragmentBottomBinding
-import com.example.imdb.ui.base.ApplicationActivity
 import com.example.imdb.ui.base.MvvmFragment
 import kotlinx.android.synthetic.main.fragment_bottom.*
 
@@ -20,7 +19,7 @@ class BottomFragment : MvvmFragment<FragmentBottomBinding, BottomViewModel>(
             setHomeButtonEnabled(false)
         }
 
-        bottomNavigationView?.setOnNavigationItemSelectedListener {
+        bottomNavigationView?.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_bottom_movies ->
                     bottomNavigation?.navigate(actionGlobalMovies())

@@ -12,14 +12,14 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.example.imdb.BR
 
-abstract class MvvmFragment<T: ViewDataBinding, V: BaseViewModel>(
+abstract class MvvmFragment<T : ViewDataBinding, V : BaseViewModel>(
     @LayoutRes private val layoutRes: Int,
     private val viewModelClazz: Class<V>
 ) : FlowFragment() {
-    protected lateinit var sharedData : ApplicationViewModel
+    protected lateinit var sharedData: ApplicationViewModel
 
     protected lateinit var binding: T
-    protected lateinit var data : V
+    protected lateinit var data: V
 
     protected var isFirstCreation: Boolean = true
 
@@ -29,7 +29,7 @@ abstract class MvvmFragment<T: ViewDataBinding, V: BaseViewModel>(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate<T>(
+        binding = DataBindingUtil.inflate(
             inflater, layoutRes,
             container, false
         ) ?: return null
